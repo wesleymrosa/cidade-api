@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Cliente } from '../modelo/Cliente';
+import { ClienteService } from '../servico/cliente.service';
 
 @Component({
   selector: 'app-principal',
@@ -6,5 +8,38 @@ import { Component } from '@angular/core';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent {
+  // variável para a visibilidade dos botões
+  btnCadastro:boolean = true;
+
+  indiceGlobal = 0;
+
+  // JSON de clientes
+  clientes:Cliente[]=[];
+
+  // Construtor
+  constructor(private servico:ClienteService){}
+
+  // método de seleção
+  selecionar(evento:any):void{
+    this.indiceGlobal = evento;
+       
+  }
+  carregarClientes():void{
+    this.servico.selecionar()
+    .subscribe(retorno => this.clientes = retorno);
+  }
+
+  // Método de inicialização
+  ngOnInit(){
+    this.carregarClientes();
+  }
+
+  // Objeto do tipo cliente
+  cliente = new Cliente();
+
+  // Método para capturar o input na tela
+   capturarInfo(evento:any) {
+    console.log(evento);
+  }
 
 }

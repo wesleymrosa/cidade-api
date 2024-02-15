@@ -5,9 +5,37 @@
     <input type="number" placeholder="idade"  class="form-control">
     <input type="text"   placeholder="cidade" class="form-control">
 
-    <input type="button" value="Cadastrar"    class="btn btn-primary">
-    <input type="button" value="Alterar"      class="btn btn-warning">
-    <input type="button" value="Remover"      class="btn btn-danger">
-    <input type="button" value="Cancelar"     class="btn btn-secondary">
+    <input type="button" value="Cadastrar"                       class="btn btn-primary">
+    <input type="button" value="Alterar"    *ngIf="!btnCadastro"  class="btn btn-warning">
+    <input type="button" value="Remover"    *ngIf="!btnCadastro"  class="btn btn-danger">
+    <input type="button" value="Cancelar"   *ngIf="!btnCadastro"  class="btn btn-secondary">
 
 </form>
+
+ <h1>{{clientes[indiceGlobal] | json}}</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>nº</th>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Selecionar</th>
+            <th>Input</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let c of clientes; index as i">
+            <td>{{i+1}}</td>
+            <td>{{c.nome}}</td>
+            <td>{{c.idade}}</td>
+            <td>{{c.cidade}}</td>
+            <td><button (click)="selecionar(i)"class="btn btn-success">Selecionar</button></td>
+            <td><input type="text" (keydown)="capturarInfo($event)">
+            </td>            
+        </tr>
+    </tbody>
+</table>
