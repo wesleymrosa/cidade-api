@@ -16,7 +16,7 @@
  <!-- <h1>{{cliente | json }}</h1>  Esse teste já pode ser removido pq já demonstrou que funcionou -->
 
 
-<table class="table">
+<table class="table" *ngIf="tabela">
     <thead>
         <tr>
             <th>nº</th>
@@ -34,7 +34,7 @@
             <td>{{c.nome}}</td>
             <td>{{c.idade}}</td>
             <td>{{c.cidade}}</td>
-            <td><button class="btn btn-success">Selecionar</button></td>
+            <td><button class="btn btn-success" (click)="selecionarClienteEspecifico(i)">Selecionar</button></td>
             <!-- <td><button (click)="selecionar(i)"class="btn btn-success">Selecionar</button></td>
             <td><input type="text" (keydown)="capturarInfo($event)"></td>             -->
         </tr>

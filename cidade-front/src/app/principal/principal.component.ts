@@ -65,4 +65,26 @@ export class PrincipalComponent {
     console.log(evento);
   }
 
+  // Variável para visibilidade da tabela
+    tabela:boolean = true;
+
+  // Método para selecionar um cliente específico  
+    selecionarClienteEspecifico(posicao:number):void{
+
+  // Seleção de cliente específico no vetor
+    this.cliente = this.clientes[posicao];
+
+  // Visibilidade dos botões
+    this.btnCadastro = false;
+
+  // Visibilidade de tabela
+    this.tabela = false;    
+
+    }
+
+  
+      
 }
+
+
+
