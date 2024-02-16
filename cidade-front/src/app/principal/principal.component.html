@@ -1,18 +1,19 @@
 <form action="">
     <img src="assets/cliente.png">
 
-    <input type="text"   placeholder="nome"   class="form-control">
-    <input type="number" placeholder="idade"  class="form-control">
-    <input type="text"   placeholder="cidade" class="form-control">
+    <input type="text"   placeholder="nome"   class="form-control" name="nome"   [(ngModel)]="cliente.nome"  >
+    <input type="number" placeholder="idade"  class="form-control" name="idade"  [(ngModel)]="cliente.idade" >
+    <input type="text"   placeholder="cidade" class="form-control" name="cidade" [(ngModel)]="cliente.cidade">
 
-    <input type="button" value="Cadastrar"                       class="btn btn-primary">
+    <input type="button" value="Cadastrar"  *ngIf="btnCadastro"   class="btn btn-primary" (click)="cadastrar()">
     <input type="button" value="Alterar"    *ngIf="!btnCadastro"  class="btn btn-warning">
     <input type="button" value="Remover"    *ngIf="!btnCadastro"  class="btn btn-danger">
     <input type="button" value="Cancelar"   *ngIf="!btnCadastro"  class="btn btn-secondary">
 
 </form>
 
- <h1>{{clientes[indiceGlobal] | json}}</h1>
+ <!-- <h1>{{clientes[indiceGlobal] | json}}</h1> -->
+ <!-- <h1>{{cliente | json }}</h1>  Esse teste já pode ser removido pq já demonstrou que funcionou -->
 
 
 <table class="table">
@@ -33,9 +34,9 @@
             <td>{{c.nome}}</td>
             <td>{{c.idade}}</td>
             <td>{{c.cidade}}</td>
-            <td><button (click)="selecionar(i)"class="btn btn-success">Selecionar</button></td>
-            <td><input type="text" (keydown)="capturarInfo($event)">
-            </td>            
+            <td><button class="btn btn-success">Selecionar</button></td>
+            <!-- <td><button (click)="selecionar(i)"class="btn btn-success">Selecionar</button></td>
+            <td><input type="text" (keydown)="capturarInfo($event)"></td>             -->
         </tr>
     </tbody>
 </table>
