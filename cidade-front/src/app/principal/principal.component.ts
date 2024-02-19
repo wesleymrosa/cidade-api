@@ -82,6 +82,33 @@ export class PrincipalComponent {
 
     }
 
+    //aula 36
+
+    // Método para editar clientes
+    editar():void{
+      this.servico.editar(this.cliente)
+      .subscribe(retorno => {
+
+        // Obter posição do vetor onde está o cliente  
+        let posicao = this.clientes.findIndex(obj =>{
+          return obj.id == retorno.id;
+        });
+
+        // Alterar os dados do cliente no vetor
+        this.clientes[posicao] = retorno;
+
+        // Visibilidade dos botões 
+        this.btnCadastro = true;
+
+        // Visibilidade da tabela
+        this.tabela = true;
+
+        // Mensagem
+        alert('Cliente alterado com sucesso.');
+      });
+
+    }
+
   
       
 }
