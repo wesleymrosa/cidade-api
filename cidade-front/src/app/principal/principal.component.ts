@@ -80,9 +80,7 @@ export class PrincipalComponent {
   // Visibilidade de tabela
     this.tabela = false;    
 
-    }
-
-    //aula 36
+    }  
 
     // Método para editar clientes
     editar():void{
@@ -97,6 +95,9 @@ export class PrincipalComponent {
         // Alterar os dados do cliente no vetor
         this.clientes[posicao] = retorno;
 
+        // Limpar formulário
+        this.cliente = new Cliente();
+
         // Visibilidade dos botões 
         this.btnCadastro = true;
 
@@ -108,6 +109,50 @@ export class PrincipalComponent {
       });
 
     }
+
+    // Método para remover clientes
+    remover():void{
+      this.servico.remover(this.cliente.id)
+      .subscribe(retorno => {
+
+        // Obter posição do vetor onde está o cliente  
+        let posicao = this.clientes.findIndex(obj =>{
+          return obj.id == this.cliente.id;
+        });
+
+        // Remover cliente do vetor
+        this.clientes.splice(posicao, 1);
+
+        // Limpar formulário
+        this.cliente = new Cliente();
+
+        // Visibilidade dos botões 
+        this.btnCadastro = true;
+
+        // Visibilidade da tabela
+        this.tabela = true;
+
+        // Mensagem
+        alert('Cliente removido com sucesso.');
+      });
+
+    }
+
+    // Método para cancelar
+    cancelar():void{
+
+      // Limpar formulário
+      this.cliente = new Cliente();
+
+      // Visibilidade dos botões 
+      this.btnCadastro = true;
+
+      // Visibilidade da tabela
+      this.tabela = true;
+
+    }
+
+
 
   
       
